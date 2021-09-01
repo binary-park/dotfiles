@@ -39,6 +39,7 @@ cask "google-backup-and-sync"
 cask "postman"
 cask "appcleaner"
 cask "notion"
+cask "font-d2coding"
 
 # Mac App Store (로그인 필요)
 mas "KakaoTalk", id: 869223134
