@@ -21,8 +21,8 @@ sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/to
 [ ! -f $HOME/.zshrc ] && ln -nfs $HOME/dotfiles/.zshrc $HOME/.zshrc
 source $HOME/.zshrc
 
-# 홈 디렉토리에 .hammerspoon 파일이 없으면 링크한다.
-[ ! -f $HOME/.hammerspoon] && ln -nfs $HOME/dotfiles/.hammerspoon $HOME/.hammerspoon
+# 홈 디렉토리에 .hammerspoon 폴더가 없으면 링크한다.
+[ ! -d $HOME/.hammerspoon] && ln -nfs $HOME/dotfiles/.hammerspoon $HOME/.hammerspoon
 
 # SDKMAN 을 설치한다.
 if [ ! -d $HOME/.sdkman ]; then
