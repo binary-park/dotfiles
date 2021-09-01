@@ -23,3 +23,10 @@ source $HOME/.zshrc
 
 # 홈 디렉토리에 .hammerspoon 파일이 없으면 링크한다.
 [ ! -f $HOME/.hammerspoon] && ln -nfs $HOME/dotfiles/.hammerspoon $HOME/.hammerspoon
+
+# SDKMAN 을 설치한다.
+if [ ! -d $HOME/.sdkman ]; then
+  curl -s "https://get.sdkman.io" | bash
+  source $HOME/.zshrc
+fi
+
