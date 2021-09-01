@@ -12,3 +12,6 @@ source $ZSH/oh-my-zsh.sh
 # SDKMAN 환경 설정
 export SDKMAN_DIR="$HOME/.sdkman"
 [ -s "$SDKMAN_DIR/bin/sdkman-init.sh" ] && source "$SDKMAN_DIR/bin/sdkman-init.sh"
+
+# fav-dir 환경 설정
+[ -s $(which fav.sh) ] && source $(which fav.sh)
