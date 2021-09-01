@@ -4,7 +4,7 @@
 [ ! -d $HOME/.oh-my-zsh ] && sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 
 # ".zshrc" 파일을 링크한다.
-[ ! -f $HOME/.zshrc ] && ln -nfs $HOME/dotfiles/.zshrc $HOME/.zshrc
+[ ! -f $HOME/.zshrc ] && ln -nfs $HOME/dotfiles/zsh/zshrc $HOME/.zshrc
 
 # 테마를 다운 받는다.
 ZSH_THEME_P10K_PATH="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k"

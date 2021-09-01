@@ -1,6 +1,8 @@
+.PHONY : brew zsh git hammerspoon sdkman
+
 DOTFILES_DIR := $(shell pwd)
 
-all: brew zsh git hammerspoon sdkman
+all: .PHONY
 
 brew:
 	chmod +x $(DOTFILES_DIR)/scripts/brew.sh

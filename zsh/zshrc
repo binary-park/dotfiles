@@ -7,7 +7,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # zsh p10k 환경 설정
-[ ! -d $HOME/dotfiles/.p10k.zsh ] && source $HOME/dotfiles/.p10k.zsh
+[ ! -d $HOME/dotfiles/zsh/p10k.zsh ] && source $HOME/dotfiles/zsh/p10k.zsh
 
 # SDKMAN 환경 설정
 export SDKMAN_DIR="$HOME/.sdkman"

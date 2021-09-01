@@ -7,6 +7,6 @@ fi
 
 # Brewfile을 실행한다.
 brew update
-brew bundle --file=$HOME/dotfiles/Brewfile
+brew bundle --file=$HOME/dotfiles/brew/Brewfile
 brew cleanup
 brew cask cleanup
