@@ -20,3 +20,6 @@ brew cask cleanup
 sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 [ ! -f $HOME/.zshrc ] && ln -nfs $HOME/dotfiles/.zshrc $HOME/.zshrc
 source $HOME/.zshrc
+
+# 홈 디렉토리에 .hammerspoon 파일이 없으면 링크한다.
+[ ! -f $HOME/.hammerspoon] && ln -nfs $HOME/dotfiles/.hammerspoon $HOME/.hammerspoon
