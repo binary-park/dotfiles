@@ -1,4 +1,4 @@
-.PHONY : brew zsh git hammerspoon sdkman
+.PHONY : brew zsh git hammerspoon sdkman vim
 
 DOTFILES_DIR := $(shell pwd)
 
@@ -23,3 +23,8 @@ hammerspoon:
 sdkman:
 	chmod +x $(DOTFILES_DIR)/scripts/sdkman.sh
 	$(DOTFILES_DIR)/scripts/sdkman.sh
+
+vim:
+	chmod +x $(DOTFILES_DIR)/scripts/vim.sh
+	$(DOTFILES_DIR)/scripts/vim.sh
+
