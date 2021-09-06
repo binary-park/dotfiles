@@ -7,6 +7,8 @@
         git alias | head -7"
     ci = commit
     co = checkout
+    sw = switch
+    re = restore
     s = status -s
     assume   = update-index --assume-unchanged
     assumed  = "!git ls-files -v | grep ^h | cut -c 3-"
@@ -27,11 +29,21 @@
         --date=format:'%Y-%m-%d' \
         --abbrev-commit \
         --pretty=format:'%C(red)%h%C(auto)%d %s %C(green)(%cr)%C(bold blue) %an'"
+    ld = "log \
+        --color --graph --decorate \
+        --date=format:'%Y-%m-%d %H:%M:%S' \
+        --abbrev-commit \
+        --pretty=format:'%C(red)%h%C(auto)%d %s %C(green)(%ad)%C(bold blue) %an'"
     ll = "log \
         --color --graph --decorate \
         --date=format:'%Y-%m-%d' \
         --abbrev-commit \
         --pretty=format:'%C(red)%H%C(auto)%d %s %C(green)(%cr)%C(bold blue) %an'"
+    lld = "log \
+        --color --graph --decorate \
+        --date=format:'%Y-%m-%d %H:%M:%S' \
+        --abbrev-commit \
+        --pretty=format:'%C(red)%H%C(auto)%d %s %C(green)(%ad)%C(bold blue) %an'"
     lh = "!# Show log graph | head \n\
         f() { \
             if [ $# = 0 ]; then \
@@ -191,10 +203,18 @@
             | cut -d' ' -f1; \
         }; f"
     stash-op = "!#A private stash tool.;\nf() { git stash-select | xargs git stash $1; }; f"
+    tag-refresh = "!# Re reference tag.;\n \
+        f() { \
+            _height=$(stty size | awk '{print $1}');\
+            tag_name=`git tag | fzf --preview=\"git l {1} | head -n $_height\" `; \
+            echo $tag_name; \
+            git tag -d $tag_name; \
+            git tag $tag_name; \
+        }; f"
     alias-alias = "!#----------------------------------------------------------;\n\
         git alias | grep alias"
     alias = "!# Prints all aliases.;\n\
-        git config --list | egrep '^alias.+' | sed -e 's/^alias\\.//' | sed -e 's/^[^=]*=/\\'$'\\033[31m&\\033[(B\\033[m/' | column -t -s'=' | sed 's/!#* *//; s/;$//' | cut -c1-85"
+        git config --list | egrep '^alias.+' | sed -e 's/^alias\\.//' | sed -e 's/^[^=]*=/\\'$'\\033[31m&\\033[B\\033[m/' | column -t -s'=' | sed 's/!#* *//; s/;$//' | cut -c1-85"
     alias-doctor = "!# Check the dependency tools.;\n\
     f() { \
         if [ $(which pygmentize | wc -l) -lt 1 ]; then \
@@ -212,6 +232,31 @@
             echo '';\
         fi; \
     }; f"
+    knot = "!# Merge two commits with 1 depth.;\n\
+    f() { \
+        if [ $(git status --short | egrep -v '^\\?' | wc -l) -gt 0 ]; then \
+            echo '변경사항을 먼저 정리해 주세요.';\
+            return; \
+        fi; \
+        _branch=`git b0`; \
+        _current=backup-`uuidgen`; \
+        _knot1=`uuidgen`; \
+        _knot2=`uuidgen`; \
+        git tag $_current; \
+        git switch -c $_knot2 $2; \
+        git switch -c $_knot1 $1; \
+        git merge $2 --no-ff; \
+        git switch $_branch; \
+        git rebase -i -r $_knot1; \
+        git branch -D $_knot1; \
+        git branch -D $_knot2; \
+        read -p \"Delete backup tag $_current ? [y|n] \" -r; \
+        REPLY=${REPLY:-"n"}; \
+        if [ $REPLY = \"y\" ]; then \
+            git tag -d $_current; \
+        fi; \
+    }; f"
+
 [core]
     excludesfile = $HOME/.gitignore_global
     editor = /usr/local/bin/vim
