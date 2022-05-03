@@ -23,6 +23,7 @@ brew "gradle"
 brew "wget"
 brew "gnupg"
 brew "fav"
+brew "kubectx"
 
 cask "docker"
 cask "google-chrome"
