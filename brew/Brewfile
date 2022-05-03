@@ -24,6 +24,9 @@ brew "wget"
 brew "gnupg"
 brew "fav"
 brew "kubectx"
+brew "c-bata/kube-prompt/kube-prompt"
+brew "kubernetes-cli", link: false
+brew "kubectx"
 
 cask "docker"
 cask "google-chrome"
